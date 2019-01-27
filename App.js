@@ -37,6 +37,10 @@ export default class App extends Component<Props> {
                 </View>
 
                 <View style={{flex: 1, flexDirection: 'row'}}>
+                    <Text></Text>
+                </View>
+
+                <View style={{flex: 1, flexDirection: 'row'}}>
                     <Image source={require('./images/running.png')}/>
                     <Text style={styles.titulos}>CORRIDA</Text>
                 </View>
