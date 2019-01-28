@@ -20,13 +20,9 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
-
     render() {
-
         return (
-
             <ScrollView>
-
                 <View style={{flex: 1, flexDirection: 'row'}}>
                     <Button
                         onPress={() => {
@@ -49,10 +45,6 @@ export default class App extends Component<Props> {
                         accessibilityLabel="botão"
                     />
                 </View>
-
-                Icon.getImageSource('user', 20, 'red').then((source) =>
-                this.setState({ userIcon: source }));
-
                 <View style={styles.containerFlatList}>
                     <FlatList
                         data={[
@@ -129,12 +121,8 @@ export default class App extends Component<Props> {
                             color="#841584"
                             accessibilityLabel=""
                         />
-
-
                     </View>
-
                 </View>
-
 
                 <View style={{flex: 1, flexDirection: 'row'}}>
                     <Text style={styles.titulos}>BICICLETA</Text>
@@ -260,25 +248,25 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
-        font-family: 'Montserrat',
+        fontFamily: 'Montserrat'
     },
     titulos: {
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
-        font-family: 'Montserrat',
+        fontFamily: 'Montserrat'
     }, subtitulos: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-    font-family: 'Montserrat',
+    fontFamily: 'Montserrat'
     }, botoes: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
-    font-family: 'Montserrat',
+    fontFamily: 'Montserrat'
     }, containerFlatList: {
         flex: 1,
         paddingTop: 22,
@@ -289,7 +277,7 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 18,
         height: 44,
-        font-family: 'Montserrat',
+        fontFamily: 'Montserrat',
     }, containerSectionList: {
         flex: 1,
         paddingTop: 22
@@ -304,13 +292,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(247,247,247,1.0)',
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        font-family: 'Montserrat',
+        fontFamily: 'Montserrat',
     },
     itemSectionList: {
         padding: 10,
         fontSize: 18,
         height: 44,
-        font-family: 'Montserrat',
+        fontFamily: 'Montserrat',
     },
     textoPaleta: {
         color: '#7F38F4'
