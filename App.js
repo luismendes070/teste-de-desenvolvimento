@@ -29,81 +29,65 @@ const instructions = Platform.select({
         'Double tap R on your keyboard to reload,\n' +
         'Shake or press menu button for dev menu',
 });
-
 type Props = {};
 export default class App extends Component<Props> {
+	
+	
+	constructor(props) {
+    super(props);
+    this.state = {
+	  corridaText:'CORRIDA',
+	  caloriaCorridaText:400,
+	  distanciaCorridaText:30,
+	  kgCorrida:52
+    };
+  }
+	
     render() {
-
+		
+	const gradientHeight=80;
+    const gradientBackground  = '#F22B48';
+    const data = Array.from({ length: gradientHeight });
+		
         return (
-            <ScrollView style={{color: '#FEFFFF', backgroundColor: '#262F38'}}>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                    <Button
-                        onPress={() => {
-                            Alert.alert('You tapped the button!');
-                        }}
-
-                        title="HAMBURGUER"
-                        color="#FEFFFF"
-                        accessibilityLabel="botão"
-
-                    />
-                    <Text style={{color: '#FEFFFF', fontFamily: 'Montserrat'}}>MEU PERFIL</Text>
-                    <Button
-                        onPress={() => {
-                            Alert.alert('You tapped the button!');
-                        }}
-
-                        title="SOL"
-                        color="#FEFFFF"
-                        accessibilityLabel="botão"
-                    />
-                </View>
-                <View style={styles.containerFlatList}>
-                    <FlatList style={{color: '#FEFFFF'}}
-                              data={[
-                                  {key: 'Devin'},
-                                  {key: 'Jackson'},
-                                  {key: 'James'},
-                                  {key: 'Joel'},
-                                  {key: 'John'},
-                                  {key: 'Jillian'},
-                                  {key: 'Jimmy'},
-                                  {key: 'Julie'},
-                              ]}
-                              renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-                    />
-                </View>
-
-                <View style={styles.containerSectionList}>
-                    <SectionList style={{color: '#FEFFFF'}}
-                                 sections={[
-                                     {title: 'D', data: ['Devin']},
-                                     {
-                                         title: 'J',
-                                         data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie']
-                                     },
-                                 ]}
-                                 renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
-                                 renderSectionHeader={({section}) => <Text
-                                     style={styles.sectionHeader}>{section.title}</Text>}
-                                 keyExtractor={(item, index) => index}
-                    />
-                </View>
-
-
+            <ScrollView style={{ backgroundColor: '#262F38'}}> 
+                    <Text 
+					style={{color: '#FEFFFF', fontFamily: 'Montserrat', fontSize: 36, textAlign:'center' }}>MEU PERFIL</Text>
+               
                 <View style={
-                    {flex: 1, flexDirection: 'row', backgroundColor: '#323C47'}
+                    {flex: 1, flexDirection: 'row', color: '#323C47', backgroundColor: '#323C47', margin: 10, padding: 20}
                 }>
-                    <ImageBackground style={{backgroundColor: '#7F38F4'}}
-                                     source={require('./images/ic_yoga.png')}/>
-                    <ImageBackground style={{backgroundColor: '#7F38F4'}}
-                                     source={require('./images/ic_upper_body.png')}/>
-                    <ImageBackground style={{backgroundColor: '#7F38F4'}}
-                                     source={require('./images/ic_lower_body.png')}/>
-                    <ImageBackground style={{backgroundColor: '#7F38F4'}}
-                                     source={require('./images/ic_dance.png')}/>
-                    <ImageBackground style={{backgroundColor: '#7F38F4'}}
-                                     source={require('./images/ic_yoga.png')}/>
+				
+				<View style={{flex:1, flexDirection: 'row'}}>
+              {data.map((_, i) => (
+                  <View
+                      key={i}
+                      style={{
+                          position: 'absolute',
+						  borderRadius: 50,
+						  color: '#7F38F4',
+                          backgroundColor: gradientBackground,
+                          height: 1,
+                          bottom: (gradientHeight - i),
+                          right: 0,
+                          left: 0,
+                          zIndex: 2,
+                          opacity: (1 / gradientHeight) * (i + 1)
+                      }}
+                  />
+              ))}
+              <Image style={{borderRadius:50, backgroundColor:'#7F38F4', width:50, height:50, margin: 10}} 
+			  source={require('./images/ic_yoga.png')}/>
+			  
+			  <Image style={{borderRadius:50, backgroundColor:'#7F38F4', width:50, height:50, margin: 10}} 
+			  source={require('./images/ic_upper_body.png')}/>
+              <Image style={{borderRadius:50, backgroundColor:'#7F38F4', width:50, height:50, margin: 10}} 
+			  source={require('./images/ic_lower_body.png')}/>
+              <Image style={{borderRadius:50, backgroundColor:'#7F38F4', width:50, height:50, margin: 10}} 
+			  source={require('./images/ic_dance.png')}/>
+              <Image style={{borderRadius:50, backgroundColor:'#7F38F4', width:50, height:50, margin: 10}} 
+			  source={require('./images/ic_yoga.png')}/>
+          </View>
                 </View>
 
 
@@ -112,20 +96,20 @@ export default class App extends Component<Props> {
 
                     <View style={{flex: 1, flexDirection: 'column'}}>
 
-                        <Text style={styles.titulos}>CORRIDA</Text>
+                        <Text style={styles.titulos,{color:'#FEFFFF'}}>{this.state.corridaText}</Text>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <Image style={{color: '#19B996'}} source={require('./images/ic_bike.png')}/>
-                            <Text style={styles.subtitulos}>400Kcal</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>{this.state.caloriaCorridaText} Kcal</Text>
                             <Image style={{color: '#FD3C29'}} source={require('./images/ic_time.png')}/>
-                            <Text style={styles.subtitulos}>30m</Text>
+	<Text style={styles.subtitulos, {color: '#FEFFFF'}}>{this.state.distanciaCorridaText} m</Text>
                             <Image source={require('./images/ic_balance.png')}/>
-                            <Text style={styles.subtitulos}>52Kg</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>{this.state.kgCorrida} kg</Text>
                         </View>
 
                         <View style={styles.botoes}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('You tapped the button!');
+                                    Alert.alert('CORRIDA');
                                 }}
 
                                 title="HOJE"
@@ -135,7 +119,7 @@ export default class App extends Component<Props> {
 
                             <Button
                                 onPress={() => {
-                                    Alert.alert('You tapped the button!');
+                                    Alert.alert('CORRIDA');
                                 }}
                                 title="ONTEM"
                                 color="#323C47"
@@ -153,20 +137,20 @@ export default class App extends Component<Props> {
                     <Image style={styles.imagens} source={require('./images/cycling.png')}/>
 
                     <View style={{flex: 1, flexDirection: 'column'}}>
-                        <Text style={styles.titulos}>BICICLETA</Text>
+                        <Text style={styles.titulos, {color: '#FEFFFF'}}>BICICLETA</Text>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <Image style={{color: '#19B996'}} source={require('./images/ic_bike.png')}/>
-                            <Text style={styles.subtitulos}>630Kcal</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>630Kcal</Text>
                             <Image style={{color: '#FD3C29'}} source={require('./images/ic_time.png')}/>
-                            <Text style={styles.subtitulos}>40m</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>40m</Text>
                             <Image source={require('./images/ic_balance.png')}/>
-                            <Text style={styles.subtitulos}>52Kg</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>52Kg</Text>
                         </View>
 
                         <View style={styles.botoes}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('You tapped the button!');
+                                    Alert.alert('BICICLETA');
                                 }}
                                 title="HOJE"
                                 color="#FD3C29"
@@ -175,7 +159,7 @@ export default class App extends Component<Props> {
 
                             <Button
                                 onPress={() => {
-                                    Alert.alert('You tapped the button!');
+                                    Alert.alert('BICICLETA');
                                 }}
                                 title="ONTEM"
                                 color="#323C47"
@@ -191,19 +175,19 @@ export default class App extends Component<Props> {
                     <Image style={styles.imagens} source={require('./images/gym.png')}/>
 
                     <View style={{flex: 1, flexDirection: 'column'}} >
-                        <Text style={styles.titulos}>MUSCULAÇÃO</Text>
+                        <Text style={styles.titulos, {color: '#FEFFFF'}}>MUSCULAÇÃO</Text>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <Image style={{color: '#19B996'}} source={require('./images/ic_bike.png')}/>
-                            <Text style={styles.subtitulos}>950Kcal</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>950Kcal</Text>
                             <Image style={{color: '#FD3C29'}} source={require('./images/ic_time.png')}/>
-                            <Text style={styles.subtitulos}>1h</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>1h</Text>
                             <Image source={require('./images/ic_balance.png')}/>
-                            <Text style={styles.subtitulos}>52Kg</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>52Kg</Text>
                         </View>
                         <View style={styles.botoes}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('You tapped the button!');
+                                    Alert.alert('MUSCULAÇÃO');
                                 }}
                                 title="HOJE"
                                 color="#323C47"
@@ -212,7 +196,7 @@ export default class App extends Component<Props> {
 
                             <Button
                                 onPress={() => {
-                                    Alert.alert('You tapped the button!');
+                                    Alert.alert('MUSCULAÇÃO');
                                 }}
                                 title="ONTEM"
                                 color="#323C47"
@@ -228,21 +212,21 @@ export default class App extends Component<Props> {
                     <Image style={styles.imagens} source={require('./images/yoga.png')}/>
 
                     <View style={{flex: 1, flexDirection: 'column'}}>
-                        <Text style={styles.titulos}>YOGA</Text>
+                        <Text style={styles.titulos, {color: '#FEFFFF'}}>YOGA</Text>
 
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <Image source={require('./images/ic_bike.png')}/>
-                            <Text style={styles.subtitulos}>200Kcal</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>200Kcal</Text>
                             <Image style={{color: '#FD3C29'}} source={require('./images/ic_time.png')}/>
-                            <Text style={styles.subtitulos}>80m</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>80m</Text>
                             <Image source={require('./images/ic_balance.png')}/>
-                            <Text style={styles.subtitulos}>52Kg</Text>
+                            <Text style={styles.subtitulos, {color: '#FEFFFF'}}>52Kg</Text>
                         </View>
 
                         <View style={styles.botoes}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('You tapped the button!');
+                                    Alert.alert('YOGA');
                                 }}
                                 title="HOJE"
                                 color="#323C47"
@@ -251,7 +235,7 @@ export default class App extends Component<Props> {
 
                             <Button
                                 onPress={() => {
-                                    Alert.alert('You tapped the button!');
+                                    Alert.alert('YOGA');
                                 }}
                                 title="ONTEM"
                                 color="#19B996"
@@ -287,12 +271,10 @@ const styles = StyleSheet.create({
     },
     titulos: {
         textAlign: 'left',
-        color: '#FEFFFF',
         marginBottom: 5,
         fontFamily: 'Montserrat',
         fontSize: 20
     }, subtitulos: {
-        color: '#FEFFFF',
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
@@ -303,20 +285,19 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         textAlign: 'center',
         margin: 10,
-        fontFamily: 'Montserrat'
+        fontFamily: 'Montserrat',
+		borderRadius: 50
     }, containerFlatList: {
         flex: 1,
         paddingTop: 22,
         flexDirection: 'row',
-        justifyContent: 'flex-end',
-        color: '#FEFFFF'
+        justifyContent: 'flex-end'
     },
     itemFlatList: {
         padding: 10,
         fontSize: 18,
         height: 44,
-        fontFamily: 'Montserrat',
-        color: '#FEFFFF'
+        fontFamily: 'Montserrat'
     }, containerSectionList: {
         flex: 1,
         paddingTop: 22
@@ -331,15 +312,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(247,247,247,1.0)',
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        fontFamily: 'Montserrat',
-        color: '#FEFFFF'
+        fontFamily: 'Montserrat'
     },
     itemSectionList: {
         padding: 10,
         fontSize: 18,
         height: 44,
-        fontFamily: 'Montserrat',
-        color: '#FEFFFF'
+        fontFamily: 'Montserrat'
     },
     textoPaleta: {
         color: '#7F38F4'
@@ -362,8 +341,15 @@ const styles = StyleSheet.create({
         borderRadius:50,
         width:82,
         height:84,
-        borderWidth: 10,
         borderStyle: 'solid',
         borderColor: '#000'
-    }
+    }, gradiente: {
+		color:'#262F38',
+	backgroundColor:'#262F38',
+	borderRadius:50,
+	width:82,
+	height:84,
+	borderStyle:'solid',
+	borderColor: '#000'
+	}
 });
