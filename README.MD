@@ -9,5 +9,7 @@ npm install
 npm start
 react-native run-android command
 
+<img src="https://github.com/luismendes070/teste-de-desenvolvimento/blob/master/Screenshot_1548948021.png" alt="teste de desenvolvimento react native">
+
                 
                 
